@@ -15,6 +15,7 @@ public enum ParcelSize {
     private final double deep;
     private final BigDecimal price;
 
+
     ParcelSize(double width, double height, double deep, double weight, BigDecimal price) {
         this.width = width;
         this.height = height;
@@ -41,5 +42,14 @@ public enum ParcelSize {
 
     public BigDecimal getPrice() {
         return price;
+    }
+    public double longestDimension(){
+        return Math.max(getHeight(), Math.max(getDeep(), getWidth()));
+    }
+    public double middleDimension(){
+        return Math.max(Math.min(getHeight(), getDeep()),Math.min(Math.max(getHeight(), getDeep()), getWidth()));
+    }
+    public double shortestDimension(){
+        return Math.min(getHeight(), Math.min(getDeep(), getWidth()));
     }
 }
