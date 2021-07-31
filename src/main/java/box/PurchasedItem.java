@@ -123,25 +123,26 @@ public class PurchasedItem {
     }
 
     public String finalAnswer() {
-        if (weightCheck() == 0) {
-           return "Nie można przesłać przedmiotu, zbyt duża waga " + getWeight();
-        }
-        if(sizeParcelEngine() == 0){
-            return "Przedmiot jest za duży. Nie mieści się do żadnego opakowania.";
-        }
+        if (weightCheck() == 0 || weightCheck()>3)
+            return "Nie można przesłać przedmiotu, zbyt duża waga " + getWeight();
 
-        if (weightCheck() == 1 && sizeParcelEngine() == 1) {
-            return "Paczka typu Smallbox. ";
-        } else {
-            if (weightCheck() == 2 && sizeParcelEngine() == 2) {
-                return "Paczka typu Mediumbox. ";
+        if (sizeParcelEngine() == 0 || sizeParcelEngine()>3)
+            return "Przedmiot jest za duży. Nie mieści się do żadnego opakowania.";
+
+
+            if (weightCheck() == 1 && sizeParcelEngine() == 1) {
+                return "Paczka typu Smallbox. ";
             } else {
-                if (weightCheck() == 3 && sizeParcelEngine() == 3) {
-                    return "Paczka typu Largebox. ";
+                if (weightCheck() == 2 && sizeParcelEngine() == 2) {
+                    return "Paczka typu Mediumbox. ";
+                } else {
+                    if (weightCheck() == 3 && sizeParcelEngine() == 3) {
+                        return "Paczka typu Largebox. ";
+                    }
                 }
-            }
-        }
-        return "";
+
+
+    }return "";
     }
 
     public BigDecimal price() {
