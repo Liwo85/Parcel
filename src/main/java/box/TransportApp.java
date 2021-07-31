@@ -18,7 +18,8 @@ public class TransportApp {
         System.out.println("Podaj cenę przedmiotu: ");
         BigDecimal price = scanner.nextBigDecimal();
         PurchasedItem purchasedItem = new PurchasedItem(h,w,d,weight,price);
-        System.out.println(purchasedItem.finalAnswer() + purchasedItem.price());
+
+       System.out.println(purchasedItem.finalAnswer() + "Cena za zamówienie wraz z wysyłką: " + purchasedItem.price() +"PLN.");
 
     }
 }

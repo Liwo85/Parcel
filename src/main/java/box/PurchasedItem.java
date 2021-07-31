@@ -107,13 +107,13 @@ public class PurchasedItem {
     }
 
     public int weightCheck() {
-        if (ParcelSize.SMALLBOX.getWeight() >= this.weight) {
+        if (ParcelSize.SMALLBOX.getWeight() >= getWeight()) {
             return 1;
         } else {
-            if (ParcelSize.MEDIUMBOX.getWeight() >= this.weight) {
+            if (ParcelSize.MEDIUMBOX.getWeight() >= getWeight()) {
                 return 2;
             } else {
-                if (ParcelSize.LARGEBOX.getWeight() >= this.weight) {
+                if (ParcelSize.LARGEBOX.getWeight() >= getWeight()) {
                     return 3;
                 } else {
                     return 0;
@@ -123,41 +123,50 @@ public class PurchasedItem {
     }
 
     public String finalAnswer() {
-        if (weightCheck() == 0 || weightCheck()>3)
-            return "Nie można przesłać przedmiotu, zbyt duża waga " + getWeight();
-
-        if (sizeParcelEngine() == 0 || sizeParcelEngine()>3)
-            return "Przedmiot jest za duży. Nie mieści się do żadnego opakowania.";
 
 
-            if (weightCheck() == 1 && sizeParcelEngine() == 1) {
-                return "Paczka typu Smallbox. ";
-            } else {
-                if (weightCheck() == 2 && sizeParcelEngine() == 2) {
-                    return "Paczka typu Mediumbox. ";
-                } else {
-                    if (weightCheck() == 3 && sizeParcelEngine() == 3) {
-                        return "Paczka typu Largebox. ";
-                    }
+        if ((weightCheck() == 0 || weightCheck() > 3) && (sizeParcelEngine() == 0 || sizeParcelEngine() > 3)) {
+            return "Nie można przesłać przedmiotu, zbyt duża waga " + getWeight() + "kg, a jego wymiary przekraczają maksymalny rozmiar. ";
+        }else {
+            if (sizeParcelEngine() == 0 || sizeParcelEngine() > 3) {
+                return "Przedmiot jest za duży. Nie mieści się do żadnego opakowania.";
+            }else{
+                if (weightCheck() == 0 || weightCheck() > 3) {
+                    return "Nie można przesłać przedmiotu, zbyt duża waga " + getWeight() + "kg. ";
                 }
+            }
+        }
 
 
-    }return "";
+        if (weightCheck() == 1 && sizeParcelEngine() == 1) {
+            return "Paczka typu Smallbox. ";
+        } else {
+            if (weightCheck() <= 2 && weightCheck() > 0 && sizeParcelEngine() == 2) {
+                return "Paczka typu Mediumbox. ";
+            } else {
+                if (weightCheck() <= 3 && weightCheck() > 0 && sizeParcelEngine() == 3) {
+                    return "Paczka typu Largebox. ";
+                }
+            }
+        }
+
+
+        return "";
     }
 
     public BigDecimal price() {
-        if (weightCheck() == 1) {
+        if (weightCheck() == 1 && sizeParcelEngine() == 1) {
             return ParcelSize.SMALLBOX.getPrice().add(getPrice());
         } else {
-            if (weightCheck() == 2) {
+            if (weightCheck() <= 2 && weightCheck() > 0 && sizeParcelEngine() == 2) {
                 return ParcelSize.MEDIUMBOX.getPrice().add(getPrice());
             } else {
-                if (weightCheck() == 3) {
+                if (weightCheck() <= 3 && weightCheck() > 0 && sizeParcelEngine() == 3) {
                     return ParcelSize.LARGEBOX.getPrice().add(getPrice());
                 }
             }
 
         }
-        return null;
+        return BigDecimal.ZERO;
     }
 }
