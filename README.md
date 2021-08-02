@@ -7,7 +7,7 @@
   undone // waiting for grafic console
 ## Contact
   | Name | Email |
- 
+  |------------------|-----------------|
   | Wojciech Liboska | w.liboska@wp.pl |
 ## List the ready features here:
   * in simply way You can add new boxes for transport
