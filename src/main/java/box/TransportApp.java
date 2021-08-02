@@ -19,7 +19,14 @@ public class TransportApp {
         BigDecimal price = scanner.nextBigDecimal();
         PurchasedItem purchasedItem = new PurchasedItem(h,w,d,weight,price);
 
-       System.out.println(purchasedItem.finalAnswer() + "Cena za zamówienie wraz z wysyłką: " + purchasedItem.price() +"PLN.");
+        try {
+            ParcelSize parcelSize = purchasedItem.findCheapestParcel();
+            System.out.println("Cena za zamówienie wraz z wysyłką: " + parcelSize.getPrice().add(purchasedItem.getPrice()) +"PLN.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+//       System.out.println( + "Cena za zamówienie wraz z wysyłką: " + purchasedItem.price() +"PLN.");
 
     }
 }
