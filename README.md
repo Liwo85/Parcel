@@ -1,7 +1,7 @@
 # ParcelProject 
 ## General Info
   It is a simple application, thanks to which you can adjust the size of the package to suit size and weight of the purchased item.
-##Technologies Used
+## Technologies Used
   * Java 11
 ## Project Status
   undone // waiting for grafic console
